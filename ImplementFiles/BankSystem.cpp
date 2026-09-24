@@ -621,7 +621,7 @@ void BankSystem::SaveDataProfile()
                               acc->GetHolderName() + "," +
                               acc->GetNationalId() + "," +
                               acc->GetAccountNumber() + "," +
-                              acc->GetPassword() + "," + // الباسورد متخزن مشفر/مشهور لوحده
+                              acc->GetPassword() + "," + 
                               std::to_string(details.total_balance);
 
         if(acc->GetAccountType() == "Saving Account")
@@ -642,7 +642,7 @@ void BankSystem::LoadDataProfile()
     if(!readFile.is_open())
     {
         accounts.clear();
-        Account::SetNextAccountNumber(1001); // [تعديل هام] تصفير العداد للبداية
+        Account::SetNextAccountNumber(1001); 
         return;
     }
 
@@ -705,13 +705,13 @@ void BankSystem::LoadDataProfile()
                 trim(investStr);
                 double investBalance = investStr.empty() ? 0.0 : std::stod(investStr);
 
-                // [تعديل] تمرير رقم الحساب القديم parsedAccountNum
+          
                 accounts.push_back(std::make_unique<SavingAccount>(
                     name, nationalId, balance, passHash, investBalance, parsedAccountNum, true));
             }
             else if(accountType == "Current Account")
             {
-                // [تعديل] تمرير رقم الحساب القديم parsedAccountNum
+                
                 accounts.push_back(std::make_unique<CurrentAccount>(
                     name, nationalId, balance, passHash, parsedAccountNum, true)); 
             }
@@ -748,12 +748,10 @@ void BankSystem::SaveDataTransactions()
         return;
     }
 
-    // بنلف على كل الحسابات الموجودة في البنك
     for(const auto& acc : accounts)
     {
         const auto& history = acc->GetTransactionHistory();
         
-        // بنلف على كل معاملة جوه الحساب ده
         for(const auto& trans : history)
         {
             std::string transactionLine = acc->GetAccountNumber() + "," +
@@ -774,8 +772,6 @@ void BankSystem::LoadDataTransactions()
 
     if(!readFile.is_open())
         return;
-
-    // ملاحظة: مش بنعمل clear لكل الحسابات، إحنا بس بنحمل المعاملات للحسابات الموجودة أصلاً بعد ما LoadDataProfile تشتغل
 
     std::string line;
     auto trim = [](std::string& str) {
@@ -812,11 +808,8 @@ void BankSystem::LoadDataTransactions()
         {
             if (accNumStr.empty() || amountStr.empty()) continue;
 
-            //int accNum = std::stoi(accNumStr);
             double amount = std::stod(amountStr);
-            //int targetAcc = targetAccStr.empty() ? 0 : std::stoi(targetAccStr);
-
-            // دور على الحساب اللي رقمه مطابق لـ accNum عشان تحط فيه المعاملة دي
+          
             for (auto& acc : accounts)
             {
                 if (acc->GetAccountNumber() == accNumStr)
@@ -837,82 +830,3 @@ void BankSystem::LoadDataTransactions()
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-void BankSystem::SaveDataTransactions()
-{
-    std::ofstream WriteFile("Transactions.txt", std::ios::trunc);
-
-    if(!WriteFile.is_open())
-    {
-        std::cerr << "Error: Could not open file for saving data!\n";
-        return;
-    }
-
-    for(const auto& acc : TransactionHistory)
-    {
-
-        std::string transactionsData = acc->PrintTransactionHistory();
-
-        WriteFile << transactionsData << "\n";
-    }
-
-    WriteFile.close();
-}
-
-void BankSystem::LoadDataTransactions()
-{
-    std::ifstream readFile("Transactions.txt");
-
-    if(!readFile.is_open())
-        return;
-
-    TransactionHistory.clear(); // تفريغ الـ Vector قبل التحميل عشان البيانات متتكررش
-
-    std::string transactionsData;
-
-    // [التعديل هنا] دالة تنظيف الحروف المخفية والمسافات
-    auto trim = [](std::string& str) {
-        while (!str.empty() && (str.back() == '\r' || str.back() == ' ' || str.back() == '\n')) {
-            str.pop_back();
-        }
-        while (!str.empty() && (str.front() == ' ' || str.front() == '\r')) {
-            str.erase(0, 1);
-        }
-    };
-
-    while(std::getline(readFile, transactionsData))
-    {
-        trim(rawData); // تنظيف السطر نفسه
-        if(rawData.empty())
-            continue; 
-    }   
-    
-    readFile.close();
-
-}
-
-
-*/
