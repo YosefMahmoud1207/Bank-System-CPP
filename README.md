@@ -43,13 +43,13 @@ Bank-System-CPP/
 └── .gitignore
 
 
-## How to Compile and Run 💻
+How to Compile and Run 💻
 
-* **1. Clone the repository:**
+1. Clone the repository:
 git clone [https://github.com/YosefMahmoud1207/Bank-System-CPP.git](https://github.com/YosefMahmoud1207/Bank-System-CPP.git)
 
-* **2. Compile all source files:**
+2. Compile all source files:
 g++ -IHeaderFiles ImplementFiles/*.cpp BANKSYSTEM.cpp -o Account.exe
 
-* **3. Run the executable:**
+3. Run the executable:
 ./Account.exe
