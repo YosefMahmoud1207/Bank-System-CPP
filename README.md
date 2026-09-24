@@ -44,7 +44,7 @@ Bank-System-CPP/
 
 
 
-##How to Compile and Run 💻
+How to Compile and Run 💻
 
 1. Clone the repository:
 git clone [https://github.com/YosefMahmoud1207/Bank-System-CPP.git](https://github.com/YosefMahmoud1207/Bank-System-CPP.git)
