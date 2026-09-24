@@ -44,15 +44,19 @@ Bank-System-CPP/
 
 ## How to Compile and Run 💻
 
+1. **Clone the repository:**
 ```bash
-# 1. Clone the repository
 git clone [https://github.com/YosefMahmoud1207/Bank-System-CPP.git](https://github.com/YosefMahmoud1207/Bank-System-CPP.git)
+Open the project in your preferred C++ environment (such as Visual Studio Code).
 
-# 2. Open the project folder in your terminal or IDE (like VS Code)
-cd Bank-System-CPP
-
-# 3. Compile all source files with header include paths
+Compile all source files with header include paths:
+Bash
 g++ -IHeaderFiles ImplementFiles/*.cpp BANKSYSTEM.cpp -o Account.exe
+
+Run the executable:
+Bash
+./Account.exe
+
 
 # 4. Run the executable
 ./Account.exe
