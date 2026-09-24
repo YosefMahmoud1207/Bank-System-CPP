@@ -41,7 +41,7 @@ bool SavingAccount::Withdraw(double amount_withdraw , std::string account_target
       }
     }
 
-/*function transfer withdraw*/
+
 bool SavingAccount::TransferSend(double amount_transfer_withdraw ,  std::string account_number_reciever)
     {  
       double available_balance = (balance_ - invest_balance_) ;

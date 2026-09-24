@@ -8,7 +8,6 @@ CurrentAccount::~CurrentAccount()
 
 }
 
-/*function withdraw*/
 
      CurrentAccount::CurrentAccount(const std::string& holder_name, const std::string& national_id, 
                                double balance, const std::string& password, 
